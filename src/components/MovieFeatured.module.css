@@ -1,0 +1,27 @@
+.featuredMovie {
+  min-height: 50rem;
+  margin-bottom: 10px;
+  background-position: center top;
+  background-size: cover;
+  display: flex;
+  align-items: flex-end;
+  padding: 0;
+}
+.featuredContent {
+  max-width: 70%;
+}
+
+.featuredTitle {
+  font-size: 6rem;
+}
+
+.featuredButton {
+  background-color: #0f1014;
+  color: white;
+  outline: none;
+  border: 1px solid white;
+  padding: 1rem 2.5rem;
+  border-radius: 8rem;
+  cursor: pointer;
+  background: linear-gradient(to right, black, rgb(40, 78, 40));
+}

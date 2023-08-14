@@ -1,0 +1,15 @@
+.movieTitle {
+  font-size: 1.8rem;
+}
+
+.movieCover {
+  width: 100%;
+}
+
+.moviePlaceHolder {
+  min-height: 27.4rem;
+  background-color: #0f1014;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

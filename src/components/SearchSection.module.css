@@ -1,0 +1,10 @@
+.SearchSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh / 2.5);
+  background-color: black;
+  color: white;
+  padding: 30px 40px;
+}
