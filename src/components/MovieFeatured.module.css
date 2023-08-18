@@ -1,13 +1,14 @@
 .featuredMovie {
   min-height: 50rem;
   margin-bottom: 10px;
-  background-position: center top;
+  background-position: top center;
   background-size: cover;
   display: flex;
   align-items: flex-end;
   padding: 0;
 }
 .featuredContent {
+  position: absolute;
   max-width: 70%;
 }
 
@@ -24,4 +25,14 @@
   border-radius: 8rem;
   cursor: pointer;
   background: linear-gradient(to right, black, rgb(40, 78, 40));
+}
+
+.youtubeContainer {
+  background-size: cover;
+  position: relative;
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

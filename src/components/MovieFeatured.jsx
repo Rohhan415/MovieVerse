@@ -1,6 +1,34 @@
 import styles from "./MovieFeatured.module.css";
+import YouTube from "react-youtube";
 
-function MovieFeatured({ selectedMovie, IMAGE_PATH }) {
+function MovieFeatured({
+  selectedMovie,
+  IMAGE_PATH,
+  setPlayTrailer,
+  playTrailer,
+}) {
+  const renderTrailer = () => {
+    const trailer = selectedMovie.videos.results.find(
+      (video) => video.name === "Official Trailer"
+    );
+    const key = trailer ? trailer.key : selectedMovie.videos.results[0].key;
+
+    return (
+      <YouTube
+        videoId={key}
+        containerClassName={styles.youtubeContainer}
+        opts={{
+          width: "100%",
+          height: "100%",
+          playerVars: {
+            autoplay: 1,
+            controls: 0,
+          },
+        }}
+      />
+    );
+  };
+
   return (
     <div
       className={styles.featuredMovie}
@@ -9,12 +37,21 @@ function MovieFeatured({ selectedMovie, IMAGE_PATH }) {
       }}
     >
       <div className={(styles.featuredContent, styles.maxCenter)}>
-        <button className={styles.featuredButton}>Play</button>
+        <button onClick={() => setPlayTrailer(false)}>Close</button>
+        {selectedMovie.videos && playTrailer ? renderTrailer() : null}
+
         <h1 className={styles.featuredTitle}>{selectedMovie.title}</h1>
         {selectedMovie.overview ? (
           <p className={styles.featuredOverview}>{selectedMovie.overview} </p>
         ) : null}
       </div>
+      <button
+        className={styles.featuredButton}
+        onClick={() => setPlayTrailer(true)}
+        type="button"
+      >
+        Play
+      </button>
     </div>
   );
 }

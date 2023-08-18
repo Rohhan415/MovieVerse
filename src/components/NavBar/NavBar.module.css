@@ -1,0 +1,44 @@
+.navigationBar {
+  display: flex;
+  justify-content: space-evenly;
+  height: 6.4rem;
+  max-width: 180rem;
+}
+
+.hideNav {
+  transform: translateY(-100%);
+}
+
+.container {
+  position: sticky;
+  top: 0;
+  transition: transform 0.5s ease;
+  background: var(--main-nav-color);
+  padding: 0 3.2rem;
+  margin: 0 auto;
+  color: white;
+}
+.navLogo {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.navTitle {
+  font-size: 2.8rem;
+  -text-shadow: 0 0 3px #000000;
+  margin-left: 15rem;
+}
+
+.navText {
+  font-size: 2rem;
+}
+
+.NavList {
+  color: white;
+  font-size: 1.8rem;
+  gap: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

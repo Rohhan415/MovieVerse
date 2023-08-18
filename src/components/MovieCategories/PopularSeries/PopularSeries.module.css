@@ -1,0 +1,20 @@
+.poster {
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+}
+
+.seriesPoster {
+  border-radius: 8px;
+  height: 24rem;
+}
+
+.seriesName {
+  font-size: 1.8rem;
+  font-weight: bold;
+  
+}
+
+.airDate {
+  font-size: 1.2rem;
+  color: #9ba7b9;
+}

@@ -13,8 +13,9 @@
   padding: 1.8rem 2.6rem;
   border-radius: 30px;
   border: 0;
+  font-weight: bold;
   color: white;
-  background: linear-gradient(to right, green, black);
+  background-color: black;
 }
 
 .searchForm {

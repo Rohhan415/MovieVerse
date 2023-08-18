@@ -4,6 +4,11 @@
   box-sizing: inherit;
 }
 
+:root {
+  --main-text-color: #d1d0d0;
+  --main-nav-color: #1a1a1a;
+}
+
 html {
   font-size: 62.5%;
   box-sizing: border-box;
@@ -11,8 +16,15 @@ html {
 
 body {
   font-family: "Manrope", sans-serif;
-  background-color: #090a0e;
-  color: white;
+
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    90deg,
+    hsl(0, 0%, 0%) 54%,
+    rgba(115, 8, 26, 1) 92%
+  );
+
+  color: var(--main-text-color);
   font-weight: 400;
   line-height: 1.6;
 }
@@ -39,8 +51,15 @@ input:focus {
   background-color: #fff;
 }
 
-.container {
-  max-width: 180rem;
-  padding: 0 3.2rem;
-  margin: 0 auto;
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(87, 80, 80) 88%;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(0, 0%, 3%);
+  border-radius: 80vw;
 }

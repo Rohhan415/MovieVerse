@@ -1,8 +1,10 @@
 .main {
   width: 100%;
   margin: auto;
-  display: grid;
-  gap: 1.5rem;
-  justify-content: center;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.container {
+  max-width: 180rem;
+  padding: 0 3.2rem;
+  margin: 0 auto;
 }
