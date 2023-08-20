@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import axios from "axios";
 
 import SearchSection from "./components/SearchSection";
@@ -7,8 +7,12 @@ import SearchTitle from "./components/SearchTitle";
 import MainSection from "./components/MainSection";
 import MovieFeatured from "./components/MovieFeatured";
 import MovieList from "./components/MovieList";
-import PopularMoviesList from "./components/MovieCategories/PopularSeries/PopularSeriesList";
+import PopularSeriesList from "./components/MovieCategories/PopularSeries/PopularSeriesList";
 import NavigationBar from "./components/NavBar/NavBar";
+import MultiSelectorButton from "./components/Buttons/MultiSelectorButton";
+import WatchListHeading from "./components/Headings/WatchListHeading";
+import WatchlistHeader from "./components/Headings/WatchlistHeader";
+import ButtonList from "./components/Buttons/ButtonList"
 
 const API_URL = "https://api.themoviedb.org/3";
 const IMAGE_PATH = "https://image.tmdb.org/t/p/w1280";
@@ -16,12 +20,19 @@ const POSTER_PATH = "https://image.tmdb.org/t/p/w185";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
-  const [popularMovies, setPopularMovies] = useState([]);
+  const [seriesType, setSeriesType] = useState([]);
   const [searchKey, setSearchKey] = useState("");
   const [selectedMovie, setSelectedMovie] = useState({});
   const [playTrailer, setPlayTrailer] = useState(false);
+  const [activeButton, setActiveButton]= useState("1");
 
+const handleButton = (button) => {
+  if(button !== activeButton) setActiveButton(button);
+  
+}
   const type = searchKey ? "search" : "discover";
+
+  
 
   const fetchMovies = async () => {
     const {
@@ -48,16 +59,25 @@ export default function App() {
     return data;
   };
 
-  const fetchPopularMovies = async () => {
+  const fetchSeries = async (seriesType) => {
+    if(seriesType === undefined) seriesType = "airing_today";
+    
     const {
       data: { results },
-    } = await axios.get(`${API_URL}/discover/tv`, {
+    } = await axios.get(`${API_URL}/tv/${seriesType}`, {
       params: { api_key: import.meta.env.VITE_API_KEY },
     });
 
-    console.log("data", results);
-    setPopularMovies(results);
+   
+    setSeriesType(results);
   };
+
+  const selectSeries =  async (seriesType) => {
+    
+    console.log("here", seriesType);
+    const data = await fetchSeries(seriesType);
+    setSeriesType(data)
+  }
 
   const selectMovie = async (movie) => {
     setPlayTrailer(false);
@@ -67,21 +87,14 @@ export default function App() {
   };
 
   useEffect(() => {
-    fetchPopularMovies();
+    fetchSeries();
     fetchMovies();
   }, []);
 
   return (
     <div>
       <NavigationBar />
-      <SearchSection>
-        <SearchTitle />
-        <SearchBar
-          searchKey={searchKey}
-          setSearchKey={setSearchKey}
-          fetchMovies={fetchMovies}
-        />
-      </SearchSection>
+      
       <MovieFeatured
         selectedMovie={selectedMovie}
         IMAGE_PATH={IMAGE_PATH}
@@ -89,8 +102,19 @@ export default function App() {
         playTrailer={playTrailer}
       />
       <MainSection>
-        <PopularMoviesList
-          popularMovies={popularMovies}
+        <WatchlistHeader>
+      <WatchListHeading>
+      <h2>Series you can watch</h2>
+          </WatchListHeading>
+        <MultiSelectorButton>
+          <ButtonList seriesType={"airing_today"} selectSeries={selectSeries} name="Airing Today" id={"1"} handleButton={handleButton} activeButton={activeButton} />
+          <ButtonList seriesType={"on_the_air"} selectSeries={selectSeries} name="On The Air" id={'2'} handleButton={handleButton}  activeButton={activeButton}/>
+          <ButtonList seriesType={"popular"} selectSeries={selectSeries} name="Popular" id={'3'} handleButton={handleButton}  activeButton={activeButton} />
+          <ButtonList seriesType={"top_rated"} selectSeries={selectSeries} name="Top Rated" id={'4'} handleButton={handleButton}  activeButton={activeButton}/>
+         </MultiSelectorButton>
+        </WatchlistHeader>
+        <PopularSeriesList
+          popularMovies={seriesType}
           POSTER_PATH={POSTER_PATH}
         />
         <MovieList
@@ -99,6 +123,14 @@ export default function App() {
           selectMovie={selectMovie}
         />
       </MainSection>
+      <SearchSection>
+        <SearchTitle />
+        <SearchBar
+          searchKey={searchKey}
+          setSearchKey={setSearchKey}
+          fetchMovies={fetchMovies}
+        />
+      </SearchSection>
     </div>
   );
 }
