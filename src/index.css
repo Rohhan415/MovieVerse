@@ -7,6 +7,22 @@
 :root {
   --main-text-color: #d1d0d0;
   --main-nav-color: #1a1a1a;
+  --border-size: 0.125rem;
+  --duration: 250ms;
+  --ease: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --color-primary: white;
+  --color-secondary: black;
+  --color-tertiary: dodgerblue;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --space: .6rem;
+  --main-background-gradient:linear-gradient(
+    90deg,
+    hsl(0, 0%, 0%) 54%,
+    rgba(115, 8, 26, 1) 92%
+  );
+  --button-background-gradient:linear-gradient(0deg,
+  rgb(15, 15, 15)25%,
+    rgba(100, 8, 26, 1) 69%)
 }
 
 html {
