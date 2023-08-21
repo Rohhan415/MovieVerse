@@ -1,4 +1,4 @@
-import {  useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 
 import SearchSection from "./components/SearchSection";
@@ -7,12 +7,14 @@ import SearchTitle from "./components/SearchTitle";
 import MainSection from "./components/MainSection";
 import MovieFeatured from "./components/MovieFeatured";
 import MovieList from "./components/MovieList";
-import PopularSeriesList from "./components/MovieCategories/PopularSeries/PopularSeriesList";
+import PopularSeriesList from "./components/MovieCategories/Series/PopularSeriesList";
 import NavigationBar from "./components/NavBar/NavBar";
 import MultiSelectorButton from "./components/Buttons/MultiSelectorButton";
 import WatchListHeading from "./components/Headings/WatchListHeading";
 import WatchlistHeader from "./components/Headings/WatchlistHeader";
-import ButtonList from "./components/Buttons/ButtonList"
+import ButtonSeries from "./components/Buttons/ButtonSeries";
+import ButtonMovies from "./components/Buttons/ButtonMovies";
+import MoviesList from "./components/MovieCategories/Movies/MoviesList";
 
 const API_URL = "https://api.themoviedb.org/3";
 const IMAGE_PATH = "https://image.tmdb.org/t/p/w1280";
@@ -24,17 +26,27 @@ export default function App() {
   const [searchKey, setSearchKey] = useState("");
   const [selectedMovie, setSelectedMovie] = useState({});
   const [playTrailer, setPlayTrailer] = useState(false);
-  const [activeButton, setActiveButton]= useState("1");
+  const [activeButton, setActiveButton] = useState("1");
+  const [activeButtonMovies, setActiveButtonMovies] = useState("5");
+  const [movieType, setMovieType] = useState([]);
 
-const handleButton = (button) => {
-  if(button !== activeButton) setActiveButton(button);
-  
-}
+  const handleButton = (button) => {
+    if (button !== activeButton) setActiveButton(button);
+  };
+
+  const handleButtonMovies = (button) => {
+    if (button !== activeButtonMovies) setActiveButtonMovies(button);
+  };
   const type = searchKey ? "search" : "discover";
 
-  
+  const selectMovie = useCallback(async (movie) => {
+    setPlayTrailer(false);
+    const data = await fetchMovie(movie.id);
 
-  const fetchMovies = async () => {
+    setSelectedMovie(data);
+  }, []);
+
+  const fetchMovies = useCallback(async () => {
     const {
       data: { results },
     } = await axios.get(`${API_URL}/${type}/movie`, {
@@ -43,10 +55,9 @@ const handleButton = (button) => {
         query: searchKey,
       },
     });
-    console.log("sss", results);
     await selectMovie(results[0]);
     setMovies(results);
-  };
+  }, [selectMovie, searchKey, type]);
 
   const fetchMovie = async (id) => {
     const { data } = await axios.get(`${API_URL}/movie/${id}`, {
@@ -59,42 +70,57 @@ const handleButton = (button) => {
     return data;
   };
 
-  const fetchSeries = async (seriesType) => {
-    if(seriesType === undefined) seriesType = "airing_today";
-    
+  const fetchSeries = useCallback(async (series) => {
+    if (series === undefined) series = "top_rated";
+
     const {
       data: { results },
-    } = await axios.get(`${API_URL}/tv/${seriesType}`, {
+    } = await axios.get(`${API_URL}/tv/${series}`, {
       params: { api_key: import.meta.env.VITE_API_KEY },
     });
+    console.log("films", results);
 
-   
     setSeriesType(results);
-  };
 
-  const selectSeries =  async (seriesType) => {
-    
+    return results;
+  }, []);
+
+  const selectSeries = async (seriesType) => {
     console.log("here", seriesType);
     const data = await fetchSeries(seriesType);
-    setSeriesType(data)
-  }
+    setSeriesType(data);
+  };
 
-  const selectMovie = async (movie) => {
-    setPlayTrailer(false);
-    const data = await fetchMovie(movie.id);
+  const fetchMoviesType = useCallback(async (series) => {
+    if (series === undefined) series = "popular";
 
-    setSelectedMovie(data);
+    const {
+      data: { results },
+    } = await axios.get(`${API_URL}/movie/${series}`, {
+      params: { api_key: import.meta.env.VITE_API_KEY },
+    });
+    console.log("films", results);
+
+    setMovieType(results);
+
+    return results;
+  }, []);
+
+  const selectMoviesType = async (seriesType) => {
+    const data = await fetchMoviesType(seriesType);
+    setMovieType(data);
   };
 
   useEffect(() => {
     fetchSeries();
     fetchMovies();
-  }, []);
+    fetchMoviesType();
+  }, [fetchSeries, fetchMovies, fetchMoviesType]);
 
   return (
     <div>
       <NavigationBar />
-      
+
       <MovieFeatured
         selectedMovie={selectedMovie}
         IMAGE_PATH={IMAGE_PATH}
@@ -103,20 +129,75 @@ const handleButton = (button) => {
       />
       <MainSection>
         <WatchlistHeader>
-      <WatchListHeading>
-      <h2>Series you can watch</h2>
+          <WatchListHeading>
+            <h2>Series you can watch</h2>
           </WatchListHeading>
-        <MultiSelectorButton>
-          <ButtonList seriesType={"airing_today"} selectSeries={selectSeries} name="Airing Today" id={"1"} handleButton={handleButton} activeButton={activeButton} />
-          <ButtonList seriesType={"on_the_air"} selectSeries={selectSeries} name="On The Air" id={'2'} handleButton={handleButton}  activeButton={activeButton}/>
-          <ButtonList seriesType={"popular"} selectSeries={selectSeries} name="Popular" id={'3'} handleButton={handleButton}  activeButton={activeButton} />
-          <ButtonList seriesType={"top_rated"} selectSeries={selectSeries} name="Top Rated" id={'4'} handleButton={handleButton}  activeButton={activeButton}/>
-         </MultiSelectorButton>
+          <MultiSelectorButton>
+            <ButtonSeries
+              seriesType={"top_rated"}
+              selectSeries={selectSeries}
+              name="Top Rated"
+              id={"1"}
+              handleButton={handleButton}
+              activeButton={activeButton}
+            />
+            <ButtonSeries
+              seriesType={"popular"}
+              selectSeries={selectSeries}
+              name="Popular"
+              id={"3"}
+              handleButton={handleButton}
+              activeButton={activeButton}
+            />
+
+            <ButtonSeries
+              seriesType={"airing_today"}
+              selectSeries={selectSeries}
+              name="Airing Today"
+              id={"4"}
+              handleButton={handleButton}
+              activeButton={activeButton}
+            />
+          </MultiSelectorButton>
         </WatchlistHeader>
         <PopularSeriesList
-          popularMovies={seriesType}
+          popularSeries={seriesType}
           POSTER_PATH={POSTER_PATH}
         />
+
+        <WatchlistHeader>
+          <WatchListHeading>
+            <h2>Movies for you</h2>
+          </WatchListHeading>
+          <MultiSelectorButton>
+            <ButtonMovies
+              moviesType={"top_rated"}
+              selectMovies={selectMoviesType}
+              name="Top Rated"
+              id={"5"}
+              handleButton={handleButtonMovies}
+              activeButtonMovies={activeButtonMovies}
+            />
+
+            <ButtonMovies
+              moviesType={"popular"}
+              selectMovies={selectMoviesType}
+              name="Popular"
+              id={"6"}
+              handleButton={handleButtonMovies}
+              activeButtonMovies={activeButtonMovies}
+            />
+            <ButtonMovies
+              moviesType={"upcoming"}
+              selectMovies={selectMoviesType}
+              name="Upcoming"
+              id={"7"}
+              handleButton={handleButtonMovies}
+              activeButtonMovies={activeButtonMovies}
+            />
+          </MultiSelectorButton>
+        </WatchlistHeader>
+        <MoviesList popularMovies={movieType} POSTER_PATH={POSTER_PATH} />
         <MovieList
           movies={movies}
           IMAGE_PATH={IMAGE_PATH}

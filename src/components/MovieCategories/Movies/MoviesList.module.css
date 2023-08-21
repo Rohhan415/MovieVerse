@@ -1,5 +1,4 @@
 .header {
-  
   padding-bottom: 1rem;
   font-size: 2.4rem;
   letter-spacing: 2px;
@@ -7,7 +6,21 @@
 
 .carouselContainer {
   display: flex;
+  align-items: first baseline;
   overflow-x: scroll;
+  padding-bottom: 3rem;
+  padding-top: 2rem;
+  height: 50rem;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Start with 0 opacity */
+  }
+  to {
+    opacity: 1; /* Transition to full opacity */
+  }
 }
 
 .carouselContainer::-webkit-scrollbar {
