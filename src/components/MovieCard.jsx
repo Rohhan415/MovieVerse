@@ -1,7 +1,7 @@
 import styles from "./MovieCard.module.css";
 const MovieCard = ({ movie, IMAGE_PATH, selectMovie }) => {
   return (
-    <div className={StyleSheet.MovieCard} onClick={() => selectMovie(movie)}>
+    <div className={styles.MovieCard} onClick={() => selectMovie(movie)}>
       {movie.poster_path ? (
         <img
           className={styles.movieCover}
