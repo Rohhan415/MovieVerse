@@ -1,4 +1,4 @@
-import styles from "./MovieFeatured.module.css";
+import styles from "./MovieFeaturedList.module.css";
 // import YouTube from "react-youtube";
 
 function MovieFeatured({ selectedMovie, IMAGE_PATH }) {

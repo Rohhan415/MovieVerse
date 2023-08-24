@@ -1,32 +1,38 @@
 .buttonActive {
-    border-radius: 20px;
-    transform: translateY(var(--border-size));
-    background: var(--button-background-gradient);
-    color: white;
-    font-weight: 900;
-    width: 100%;
-    max-width: 100rem;
-    z-index: 1;
-    margin: 0 auto;
-    margin-bottom: 8px;
-    border: var(--border-size) solid black;
-    cursor: pointer;
-    padding: 1rem 1rem 1rem;
-    }
-    
-      .multiButton  {
-        width: 100%;
-        margin: 0 auto;
-        max-width: 100rem;
-        z-index: 1;
-        margin-bottom: 8px;
-        cursor: pointer;
-        font-weight: 900;
-        border-radius: 20px;
-        padding: 1rem 1rem 1rem;
-        border: var(--border-size) solid black;
-        color: var(--main-text-color);
-        background-color: var(--main-nav-color);
-        
-        
-      }
+  border-radius: 20px;
+  transform: translateY(var(--border-size));
+  background: var(--button-background-gradient);
+  color: white;
+  font-weight: 900;
+  width: 100%;
+  max-width: 100rem;
+  z-index: 1;
+  margin: 0 auto;
+  margin-bottom: 8px;
+  border: var(--border-size) solid black;
+  cursor: pointer;
+  padding: 1rem 1rem 1rem;
+}
+
+.buttonActive:focus {
+  outline: none; /* Remove the default focus outline */
+}
+
+.multiButton:focus {
+  outline: rgba(100, 8, 26, 1);
+}
+
+.multiButton {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 100rem;
+  z-index: 1;
+  margin-bottom: 8px;
+  cursor: pointer;
+  font-weight: 900;
+  border-radius: 20px;
+  padding: 1rem 1rem 1rem;
+  border: var(--border-size) solid black;
+  color: var(--main-text-color);
+  background-color: var(--main-nav-color);
+}

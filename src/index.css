@@ -1,3 +1,8 @@
+/* -- 01 TYPOGRAPHY SYSTEM
+2/4/8/12/16/24/32/48/64/80/96/128
+    FONT SIZE SYSTEM (px)
+10/12/14/16/18/20/24/30/36/44/52/62/74/86/98 */
+
 * {
   margin: 0;
   padding: 0;
@@ -14,15 +19,31 @@
   --color-secondary: black;
   --color-tertiary: dodgerblue;
   --shadow: rgba(0, 0, 0, 0.1);
-  --space: .6rem;
-  --main-background-gradient:linear-gradient(
+  --space: 0.6rem;
+  --space-secondary: 2rem;
+  --main-focus-color: rgb(165, 14, 44);
+  --main-background-gradient: linear-gradient(
     90deg,
     hsl(0, 0%, 0%) 54%,
     rgba(115, 8, 26, 1) 92%
   );
-  --button-background-gradient:linear-gradient(0deg,
-  rgb(15, 15, 15)25%,
-    rgba(100, 8, 26, 1) 69%)
+  --button-background-gradient: linear-gradient(
+    0deg,
+    rgb(15, 15, 15) 25%,
+    rgba(100, 8, 26, 1) 69%
+  );
+}
+
+*:focus {
+  box-shadow: 0 0 0 0.3rem var(--main-focus-color);
+  transition: box-shadow 0.3s ease;
+  animation: fadeOut 1s forwards 2s;
+}
+
+@keyframes fadeOut {
+  to {
+    box-shadow: none;
+  }
 }
 
 html {

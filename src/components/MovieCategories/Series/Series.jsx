@@ -1,4 +1,4 @@
-import styles from "./PopularSeries.module.css";
+import styles from "./Series.module.css";
 
 function PopularSeries({ POSTER_PATH, series }) {
   return (

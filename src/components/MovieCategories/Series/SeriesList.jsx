@@ -1,10 +1,10 @@
-import PopularSeries from "./PopularSeries";
-import styles from "./PopularSeriesList.module.css";
+import PopularSeries from "./Series";
+import styles from "./SeriesList.module.css";
 
-function PopularSeriesList({ popularSeries, POSTER_PATH }) {
+function PopularSeriesList({ popularSeries, POSTER_PATH, TAB_NAME }) {
   return (
     <>
-      <ul className={styles.carouselContainer}>
+      <ul key={TAB_NAME} className={styles.carouselContainer}>
         {popularSeries?.map((series) => (
           <PopularSeries
             key={series.id}

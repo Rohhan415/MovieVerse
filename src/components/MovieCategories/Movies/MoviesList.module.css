@@ -8,6 +8,7 @@
   display: flex;
   align-items: first baseline;
   overflow-x: scroll;
+  overflow-y: hidden;
   padding-bottom: 3rem;
   padding-top: 2rem;
   height: 50rem;

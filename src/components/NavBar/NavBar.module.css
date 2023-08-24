@@ -1,9 +1,13 @@
 .navigationBar {
-  display: flex;
-  justify-content: space-evenly;
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-around;
   height: 6.4rem;
   max-width: 180rem;
-  
+}
+
+.navigationBar ul {
+  list-style: none;
 }
 
 .hideNav {
@@ -11,6 +15,8 @@
 }
 
 .container {
+  display: flex;
+  justify-content: center;
   z-index: 10;
   position: sticky;
   top: 0;
@@ -24,7 +30,7 @@
   display: flex;
   align-items: center;
   gap: 4rem;
-   white-space: nowrap;
+  white-space: nowrap;
 }
 
 .navTitle {
@@ -38,10 +44,31 @@
 }
 
 .NavList {
-  color: white;
   font-size: 1.8rem;
-  gap: 10rem;
+  gap: var(--space-secondary);
+
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.4s;
+  overflow: hidden;
+}
+
+.NavList a:hover,
+.NavList a:focus {
+  background-color: #313131;
+  border-radius: 8px;
+  outline: none;
+  box-shadow: none;
+  transition: ease-out 0.3s background-color;
+}
+
+.NavList a:link,
+.NavList a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.NavList a {
+  padding: 1rem;
 }

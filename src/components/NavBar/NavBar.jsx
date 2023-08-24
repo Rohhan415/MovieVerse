@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
 
 function NavigationBar() {
@@ -38,17 +39,17 @@ function NavigationBar() {
         </div>
 
         <ul className={styles.NavList}>
-          <li>
-            <a href="#">Movies</a>
+          <li className={styles.navButton}>
+            <Link to="/">Home</Link>
           </li>
-          <li>
-            <a href="#">Series</a>
+          <li className={styles.navButton}>
+            <Link to="/movies">Movies</Link>
           </li>
-          <li>
-            <a href="#">Actors</a>
+          <li className={styles.navButton}>
+            <Link to="/series">Series</Link>
           </li>
-          <li>
-            <a href="#">Contact</a>
+          <li className={styles.navButton}>
+            <Link to="/actors">Actors</Link>
           </li>
         </ul>
       </div>
