@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
+import styles from "../src/App.module.css";
 
 import Homepage from "./pages/Homepage";
 import Movies from "./pages/Movies";
@@ -17,7 +18,8 @@ const POSTER_PATH = "https://image.tmdb.org/t/p/w185";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [seriesType, setSeriesType] = useState([]);
-  const [searchKey, setSearchKey] = useState("");
+  const [MoviesSearchKey, setMoviesSearchKey] = useState("");
+  const [seriesSearchKey, setSeriesSearchKey] = useState("");
   const [selectedMovie, setSelectedMovie] = useState({});
   const [playTrailer, setPlayTrailer] = useState(false);
   const [activeButton, setActiveButton] = useState("1");
@@ -25,6 +27,7 @@ export default function App() {
   const [movieType, setMovieType] = useState([]);
   const [movieTabName, setMovieTabName] = useState("");
   const [seriesTabName, setSeriesTabName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleButton = (button) => {
     if (button !== activeButton) setActiveButton(button);
@@ -33,7 +36,7 @@ export default function App() {
   const handleButtonMovies = (button) => {
     if (button !== activeButtonMovies) setActiveButtonMovies(button);
   };
-  const type = searchKey ? "search" : "discover";
+  const type = MoviesSearchKey ? "search" : "discover";
 
   const selectMovie = useCallback(async (movie) => {
     setPlayTrailer(false);
@@ -43,18 +46,20 @@ export default function App() {
   }, []);
 
   const fetchMovies = useCallback(async () => {
+    setIsLoading(true);
     const {
       data: { results },
     } = await axios.get(`${API_URL}/${type}/movie`, {
       params: {
         api_key: import.meta.env.VITE_API_KEY,
-        query: searchKey,
+        query: MoviesSearchKey,
       },
     });
 
     await selectMovie(results[0]);
     setMovies(results);
-  }, [selectMovie, searchKey, type]);
+    setIsLoading(false);
+  }, [selectMovie, MoviesSearchKey, type]);
 
   const fetchMovie = async (id) => {
     const { data } = await axios.get(`${API_URL}/movie/${id}`, {
@@ -75,7 +80,6 @@ export default function App() {
     } = await axios.get(`${API_URL}/tv/${series}`, {
       params: { api_key: import.meta.env.VITE_API_KEY },
     });
-    console.log("films", results);
 
     setSeriesType(results);
 
@@ -97,7 +101,6 @@ export default function App() {
     } = await axios.get(`${API_URL}/movie/${series}`, {
       params: { api_key: import.meta.env.VITE_API_KEY },
     });
-    console.log("films", results);
 
     setMovieType(results);
 
@@ -117,7 +120,7 @@ export default function App() {
   }, [fetchSeries, fetchMovies, fetchMoviesType]);
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <BrowserRouter>
         <Routes>
           <Route
@@ -147,16 +150,33 @@ export default function App() {
             path="movies"
             element={
               <Movies
+                isLoading={isLoading}
                 movies={movies}
-                setSearchKey={setSearchKey}
-                searchKey={searchKey}
+                setSearchKey={setMoviesSearchKey}
+                searchKey={MoviesSearchKey}
                 fetchMovies={fetchMovies}
                 selectMovie={selectMovie}
                 IMAGE_PATH={IMAGE_PATH}
+                API_URL={API_URL}
+                POSTER_PATH={POSTER_PATH}
+                setIsLoading={setIsLoading}
               />
             }
           />
-          <Route path="series" element={<Series />} />
+          <Route
+            path="series"
+            element={
+              <Series
+                API_URL={API_URL}
+                POSTER_PATH={POSTER_PATH}
+                IMAGE_PATH={IMAGE_PATH}
+                searchKey={seriesSearchKey}
+                setSearchKey={setSeriesSearchKey}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
+            }
+          />
           <Route path="actors" element={<Actors />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

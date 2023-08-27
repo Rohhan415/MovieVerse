@@ -12,7 +12,7 @@ export default function SearchBar({ searchKey, setSearchKey, fetchMovies }) {
         <input
           className={styles.SearchBar}
           type="text"
-          placeholder="Search movies..."
+          placeholder="Looking for something specific?"
           onChange={(e) => setSearchKey(e.target.value)}
         />
         <button

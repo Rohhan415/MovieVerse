@@ -1,9 +1,7 @@
 .footer {
-  margin: 0 auto;
+  margin-top: auto;
   list-style-type: none;
   gap: var(--space-secondary);
-
-  height: calc(80vh / 2.5);
   background: rgb(26, 26, 26);
   background: linear-gradient(
     0deg,

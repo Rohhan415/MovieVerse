@@ -1,0 +1,43 @@
+.seriesCard {
+  display: flex;
+  gap: 8px;
+}
+
+.seriesCover {
+  border-radius: 8px;
+  height: 100%;
+  width: 50%;
+}
+
+.seriesName {
+  font-size: 1.8rem;
+}
+
+.briefDetails {
+  display: flex;
+
+  gap: 0.4rem;
+  flex-direction: column;
+}
+
+.seriesRating {
+  font-size: 1.6rem;
+}
+
+.seriesStar {
+  display: inline;
+  font-size: 2.2rem;
+}
+
+.seriesPlaceHolder {
+  height: 100%;
+  width: 50%;
+  border-radius: 8px;
+  background-color: #0f1014;
+  background: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  color: white;
+}

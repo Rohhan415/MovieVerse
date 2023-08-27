@@ -1,14 +1,15 @@
 import MovieCard from "./MovieCard";
 import styles from "./MovieList.module.css";
 
-function MovieList({ IMAGE_PATH, selectMovie, movies }) {
+function MovieList({ POSTER_PATH, selectOneMovie, movies, handleClickOpen }) {
   const renderMovies = () =>
     movies.map((movie) => (
       <MovieCard
         key={movie.id}
         movie={movie}
-        IMAGE_PATH={IMAGE_PATH}
-        selectMovie={selectMovie}
+        POSTER_PATH={POSTER_PATH}
+        selectOneMovie={selectOneMovie}
+        handleClickOpen={handleClickOpen}
       />
     ));
 

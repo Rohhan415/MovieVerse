@@ -1,0 +1,43 @@
+.movieCard {
+  display: flex;
+  gap: 8px;
+}
+
+.movieCover {
+  border-radius: 8px;
+  height: 100%;
+  width: 50%;
+}
+
+.movieTitle {
+  font-size: 1.8rem;
+}
+
+.briefDetails {
+  display: flex;
+
+  gap: 0.4rem;
+  flex-direction: column;
+}
+
+.moviesRating {
+  font-size: 1.6rem;
+}
+
+.moviesStar {
+  display: inline;
+  font-size: 2.2rem;
+}
+
+.moviePlaceHolder {
+  height: 100%;
+  width: 50%;
+  border-radius: 8px;
+  background-color: #0f1014;
+  background: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  color: white;
+}

@@ -1,0 +1,114 @@
+.seriesInfo {
+  position: fixed;
+  background-color: var(--main-nav-color);
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: 30%;
+  height: 100vh;
+
+  padding-top: 5rem;
+  font-size: 3rem;
+  transform: translateX(-100%);
+  transition: all 0.3s ease-in-out;
+}
+
+.seriesInfo.hidden {
+  transform: translateX(100%); /* Slide out to the right */
+}
+
+.seriesSeasons {
+  font-family: cursive;
+  font-size: 1.4rem;
+  margin: 0 2rem;
+}
+
+.seriesData {
+  display: flex;
+  margin: 0 2rem;
+  gap: 2rem;
+}
+
+.seriesVotes {
+  font-family: cursive;
+  font-size: 1.4rem;
+}
+
+.seriesDate {
+  font-size: 1.4rem;
+  margin: 0 2rem;
+  font-family: cursive;
+}
+
+.seriesOverview {
+  font-family: cursive;
+  font-size: 1.4rem;
+  margin: 0 2rem;
+}
+
+.seriesImage {
+  width: 100%;
+}
+
+.seriesTitle {
+  display: flex;
+  max-width: 49rem;
+  margin-top: 3rem;
+  margin-left: 2rem;
+}
+
+.outer {
+  position: relative;
+}
+
+.button {
+  border-radius: 50%;
+  padding: 0.5em;
+  width: 30px;
+  height: 30px;
+  border: 2px solid black;
+  color: black;
+  position: absolute;
+  top: 8rem;
+  right: 3rem;
+}
+.button:hover {
+  border: 2px solid var(--main-text-color);
+  background-color: var(--main-text-color), 0.6;
+}
+.button:focus {
+  outline: none;
+  box-shadow: none;
+  background-color: none;
+}
+
+.button:hover::before,
+.button:hover::after {
+  background-color: var(--main-text-color); /* Kolor tła po najechaniu myszką */
+  transform: scale(2), rotate(45deg);
+}
+
+.button::before {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: black;
+  width: 2px;
+  left: 12px;
+  top: 5px;
+  bottom: 5px;
+  transform: rotate(45deg);
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.button::after {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: black;
+  height: 2px;
+  top: 12px;
+  left: 5px;
+  right: 5px;
+  transform: rotate(45deg);
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
