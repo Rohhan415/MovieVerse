@@ -6,8 +6,8 @@ import SearchBar from "../components/SearchBar";
 import SearchTitle from "../components/SearchTitle";
 import Loader from "../components/Loader/Loader";
 import MainSection from "../components/MainSection";
-import SeriesQuery from "../components/SeriesQuery/SeriesQuery";
-import SeriesInfo from "../components/SeriesQuery/SeriesInfo";
+import SeriesQuery from "../components/SeriesList/SeriesList";
+import SeriesInfo from "../components/SeriesList/SeriesInfo";
 
 function Series({
   API_URL,

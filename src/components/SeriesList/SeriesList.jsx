@@ -1,4 +1,4 @@
-import styles from "./SeriesQuery.module.css";
+import styles from "./SeriesList.module.css";
 import SeriesCard from "./SeriesCard";
 
 function SeriesQuery({ POSTER_PATH, series, selectSeries, handleClickOpen }) {
