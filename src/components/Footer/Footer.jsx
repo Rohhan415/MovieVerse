@@ -6,8 +6,8 @@ function Footer() {
     <footer className={styles.footer}>
       <div className={styles.footerText}>
         <div className={styles.footerLinks}>
-          <h3> Useful Links</h3>
           <ul className={styles.footerPageList}>
+            <h3> Useful Links</h3>
             <li className={styles.footerPageButton}>
               <Link to="/movies">Movies</Link>
             </li>

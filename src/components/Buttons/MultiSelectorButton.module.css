@@ -8,3 +8,9 @@
   margin-bottom: 8px;
   gap: var(--space-secondary);
 }
+
+@media (max-width: 34em) {
+  .multiButtonList {
+    gap: 1rem;
+  }
+}

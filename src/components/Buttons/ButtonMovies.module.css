@@ -12,6 +12,7 @@
   border: var(--border-size) solid black;
   cursor: pointer;
   padding: 1rem 1rem 1rem;
+  max-width: 32rem;
 }
 
 .buttonActive:focus {
@@ -25,7 +26,8 @@
 .multiButton {
   width: 100%;
   margin: 0 auto;
-  max-width: 100rem;
+
+  max-width: 32rem;
   z-index: 1;
   margin-bottom: 8px;
   cursor: pointer;
@@ -35,4 +37,18 @@
   border: var(--border-size) solid black;
   color: var(--main-text-color);
   background-color: var(--main-nav-color);
+}
+
+@media (max-width: 34em) {
+  .multiButton {
+    font-size: 1.4rem;
+    height: 6rem;
+    margin-bottom: none;
+    height: 5.8rem;
+  }
+  .buttonActive {
+    font-size: 1.4rem;
+    height: 6rem;
+    margin-bottom: none;
+  }
 }

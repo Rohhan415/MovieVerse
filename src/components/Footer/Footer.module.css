@@ -38,6 +38,7 @@
   display: flex;
   flex-direction: column;
   justify-content: end;
+  flex-wrap: wrap;
 }
 
 .footer a:hover,
@@ -57,4 +58,25 @@
 
 .footer a {
   padding: 0.5rem;
+}
+
+@media (max-width: 44em) {
+  .footerText {
+    gap: 2rem;
+  }
+  .footerPageList {
+    padding-left: 3.2rem;
+  }
+}
+
+@media (max-width: 34em) {
+  .footerText {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: 1.4rem;
+  }
+
+  .footerInfo {
+    padding-left: 3.2rem;
+  }
 }

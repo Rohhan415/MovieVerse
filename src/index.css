@@ -51,6 +51,13 @@ html {
   box-sizing: border-box;
 }
 
+/* Width for small tablets */
+@media (max-width: 59em) {
+  html {
+    font-size: 50%;
+  }
+}
+
 body {
   font-family: "Manrope", sans-serif;
 

@@ -69,7 +69,7 @@
   border: 2px solid black;
   color: black;
   position: absolute;
-  top: 8rem;
+  top: 6.2rem;
   right: 3rem;
 }
 .button:hover {
@@ -111,4 +111,23 @@
   right: 5px;
   transform: rotate(45deg);
   transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+@media (max-width: 59em) {
+  .seriesInfo {
+    width: 50%;
+  }
+}
+
+@media (max-width: 44em) {
+  .seriesInfo {
+    z-index: 20;
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .button {
+    top: 2rem;
+  }
 }

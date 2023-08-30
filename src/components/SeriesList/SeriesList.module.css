@@ -15,3 +15,17 @@
     opacity: 1; /* Transition to full opacity */
   }
 }
+
+/* Tablets */
+@media (max-width: 59em) {
+  .seriesList {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* smaller tablets */
+@media (max-width: 44em) {
+  .seriesList {
+    grid-template-columns: 1fr;
+  }
+}

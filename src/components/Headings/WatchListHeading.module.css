@@ -3,3 +3,9 @@
   margin-left: 0.5rem;
   width: 35rem;
 }
+
+@media (max-width: 34em) {
+  .watchListHeading h2 {
+    width: 31rem;
+  }
+}

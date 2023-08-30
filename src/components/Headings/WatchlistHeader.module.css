@@ -1,5 +1,13 @@
 .watchlistHeader {
   display: flex;
+
   align-items: end;
-  
+  max-width: 170rem;
+}
+
+@media (max-width: 44em) {
+  .watchlistHeader {
+    flex-direction: column;
+    align-items: start;
+  }
 }
