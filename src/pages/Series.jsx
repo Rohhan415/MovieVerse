@@ -22,6 +22,8 @@ function Series({
   const [selectedSeries, setSelectedSeries] = useState({});
   const [activeInfoTab, setActiveInfoTab] = useState(false);
 
+  const type = searchKey ? "search" : "discover";
+
   const handleClickOpen = () => {
     // 👇️ toggle isActive state on click
     setActiveInfoTab(true);
@@ -39,7 +41,7 @@ function Series({
     setIsLoading(true);
     const {
       data: { results },
-    } = await axios.get(`${API_URL}/search/tv`, {
+    } = await axios.get(`${API_URL}/${type}/tv`, {
       params: {
         api_key: import.meta.env.VITE_API_KEY,
         query: searchKey,
@@ -48,7 +50,7 @@ function Series({
 
     setSeries(results);
     setIsLoading(false);
-  }, [setIsLoading, API_URL, searchKey]);
+  }, [setIsLoading, API_URL, searchKey, type]);
 
   useEffect(() => {
     fetchSeries();

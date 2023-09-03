@@ -14,9 +14,6 @@ function Footer() {
             <li className={styles.footerPageButton}>
               <Link to="/series">Series</Link>
             </li>
-            <li className={styles.footerPageButton}>
-              <Link to="/actors">Actors</Link>
-            </li>
           </ul>
         </div>
         <div className={styles.footerFollow}>

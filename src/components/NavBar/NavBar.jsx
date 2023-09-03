@@ -74,9 +74,6 @@ function NavigationBar() {
           <li className={styles.navButton}>
             <Link to="/series">Series</Link>
           </li>
-          <li className={styles.navButton}>
-            <Link to="/actors">Actors</Link>
-          </li>
         </ul>
       </div>
     </header>

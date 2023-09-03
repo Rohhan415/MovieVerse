@@ -6,7 +6,6 @@ import styles from "../src/App.module.css";
 import Homepage from "./pages/Homepage";
 import Movies from "./pages/Movies";
 import Series from "./pages/Series";
-import Actors from "./pages/Actors";
 import PageNotFound from "./pages/PageNotFound";
 import Footer from "./components/Footer/Footer";
 // import FeaturedMovie from "./components/FeaturedMovie/FeaturedMovie";
@@ -56,7 +55,7 @@ export default function App() {
       },
     });
 
-    await selectMovie(results[0]);
+    await selectMovie(results[5]);
     setMovies(results);
     setIsLoading(false);
   }, [selectMovie, MoviesSearchKey, type]);
@@ -142,6 +141,7 @@ export default function App() {
                 seriesTabName={seriesTabName}
                 playTrailer={playTrailer}
                 setPlayTrailer={setPlayTrailer}
+                fetchSeries={fetchSeries}
               />
             }
           />
@@ -177,7 +177,7 @@ export default function App() {
               />
             }
           />
-          <Route path="actors" element={<Actors />} />
+
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer />

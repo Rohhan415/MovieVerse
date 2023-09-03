@@ -2,10 +2,10 @@ import styles from "./MovieCard.module.css";
 const MovieCard = ({ movie, POSTER_PATH, selectOneMovie, handleClickOpen }) => {
   return (
     <li className={styles.movieCard}>
-      {movie.poster_path ? (
+      {movie?.poster_path ? (
         <img
           className={styles.movieCover}
-          src={`${POSTER_PATH}${movie.poster_path}`}
+          src={`${POSTER_PATH}${movie?.poster_path}`}
           alt=""
           onClick={() => {
             handleClickOpen();

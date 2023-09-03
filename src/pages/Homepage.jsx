@@ -5,7 +5,7 @@ import WatchlistHeader from "../components/Headings/WatchlistHeader";
 import ButtonSeries from "../components/Buttons/ButtonSeries";
 import ButtonMovies from "../components/Buttons/ButtonMovies";
 import MoviesList from "../components/MovieCategories/Movies/MoviesList";
-import MovieFeatured from "../components/MovieFeaturedList";
+import MovieFeatured from "../components/FeaturedSection/MovieFeaturedList";
 import MainSection from "../components/MainSection";
 import NavigationBar from "../components/NavBar/NavBar";
 
@@ -25,6 +25,7 @@ function Homepage({
   seriesTabName,
   playTrailer,
   setPlayTrailer,
+  fetchSeries,
 }) {
   return (
     <>
@@ -34,6 +35,8 @@ function Homepage({
         IMAGE_PATH={IMAGE_PATH}
         setPlayTrailer={setPlayTrailer}
         playTrailer={playTrailer}
+        seriesType={seriesType}
+        fetchSeries={fetchSeries}
       />
       <MainSection>
         <WatchlistHeader>

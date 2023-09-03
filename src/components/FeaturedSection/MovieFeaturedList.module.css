@@ -8,7 +8,9 @@
   align-items: flex-end;
   justify-content: center;
   padding: 0;
+  transition: background-image 2.5s ease, opacity 0.5s ease;
 }
+
 
 .movieBanner {
   position: absolute;
@@ -33,8 +35,18 @@
   position: relative;
   font-size: 5rem;
   font-weight: 300;
-
   color: white;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Start with 0 opacity */
+  }
+  to {
+    opacity: 1; /* Transition to full opacity */
+  }
 }
 
 .featuredButton {
